@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>For Selen · A Love Letter from Morocco</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Long+Cang&family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@200;300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+SC:wght@300;400;500&family=Dancing+Script:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            background: #f9f5f0;
+            color: #2c241a;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f0ebe5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #b8a697;
+            border-radius: 8px;
+        }
+
+        /* ===== PAPER GRAIN ===== */
+        .paper-grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+        }
+
+        /* ===== PROGRESS ===== */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            z-index: 10000;
+            width: 100%;
+            background: transparent;
+        }
+
+        .progress .bar {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #d4a373, #b5835a, #8d6b4a);
+            transition: width 0.2s ease;
+        }
+
+        /* ===== OPENING ===== */
+        .opening {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #2c241a;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .opening-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, #3d3228, #1a1510);
+            z-index: 0;
+        }
+
+        .opening-stage {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .box {
+            position: relative;
+            width: 260px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            perspective: 800px;
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.02);
+        }
+
+        .box-lid {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            transform-origin: bottom center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: rotateX(0deg);
+            z-index: 3;
+        }
+
+        .box-lid.open {
+            transform: rotateX(-110deg);
+        }
+
+        .box-face {
+            width: 100%;
+            height: 100%;
+            background: #d4a373;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #b5835a;
+            border-bottom: none;
+            position: relative;
+            box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-pattern {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .box-pattern .pup {
+            width: 18px;
+            height: 18px;
+            background: #b5835a;
+            border-radius: 50%;
+            border: 2px solid #8d6b4a;
+        }
+
+        .box-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: #4a3428;
+            font-weight: 700;
+        }
+
+        .box-tag {
+            font-size: 12px;
+            color: #4a3428;
+            letter-spacing: 4px;
+            opacity: 0.7;
+        }
+
+        .box-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #d4a373;
+            border-radius: 0 0 8px 8px;
+            border: 2px solid #b5835a;
+            border-top: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .box-side-front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .box-front-art {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .box-front-art .bear {
+            font-size: 40px;
+            opacity: 0.6;
+        }
+
+        .box-front-text {
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #4a3428;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .box-paper {
+            position: absolute;
+            inset: 10px;
+            border: 1px dashed rgba(74, 52, 40, 0.2);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .open-hint {
+            color: #d4a373;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            letter-spacing: 6px;
+            opacity: 0.8;
+            transition: opacity 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .open-hint.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .open-line {
+            width: 60px;
+            height: 1px;
+            background: #d4a373;
+            opacity: 0.5;
+        }
+
+        .open-from {
+            font-size: 12px;
+            letter-spacing: 4px;
+            opacity: 0.6;
+        }
+
+        /* ===== OPENING LETTER ===== */
+        .opening-letter {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            background: rgba(26, 21, 16, 0.85);
+            padding: 2rem;
+        }
+
+        .opening-letter.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .opening-letter-inner {
+            background: #f9f5f0;
+            max-width: 520px;
+            width: 100%;
+            padding: 3rem 2.5rem;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.6s ease;
+        }
+
+        .opening-letter.show .opening-letter-inner {
+            transform: translateY(0);
+        }
+
+        .letter-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: #d4a373;
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .letter-corner-tl {
+            top: 12px;
+            left: 12px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .letter-corner-tr {
+            top: 12px;
+            right: 12px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .letter-corner-bl {
+            bottom: 12px;
+            left: 12px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .letter-corner-br {
+            bottom: 12px;
+            right: 12px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .opening-to {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c241a;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 0.5rem;
+        }
+
+        .opening-body {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #3d3228;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .opening-sign {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            color: #b5835a;
+        }
+
+        /* ===== COVER ===== */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(165deg, #f9f5f0 0%, #ede6dc 100%);
+            position: relative;
+        }
+
+        .cover-frame {
+            position: absolute;
+            inset: 30px;
+            border: 1px solid rgba(181, 131, 90, 0.2);
+            pointer-events: none;
+        }
+
+        .cover-inner {
+            max-width: 780px;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-date {
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: #b5835a;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .cover-from {
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #8d6b4a;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .cover-title {
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+            color: #2c241a;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .cover-title .t-line {
+            display: inline-block;
+        }
+
+        .cover-underline {
+            width: 80px;
+            height: 2px;
+            background: #d4a373;
+            margin: 1.2rem auto;
+        }
+
+        .cover-sub {
+            font-size: 18px;
+            color: #5c4a3a;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cover-quote {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #3d3228;
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            opacity: 0.85;
+        }
+
+        .cover-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #8d6b4a;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .cover-meta .dot {
+            opacity: 0.4;
+        }
+
+        .scroll-hint {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #8d6b4a;
+            font-size: 13px;
+            letter-spacing: 4px;
+            font-weight: 300;
+            opacity: 0.6;
+            animation: floatDown 2.5s ease-in-out infinite;
+        }
+
+        .scroll-hint svg {
+            width: 14px;
+            height: 22px;
+        }
+
+        @keyframes floatDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* ===== TOC ===== */
+        .toc {
+            padding: 4rem 2rem 3rem;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .sec-num {
+            font-size: 12px;
+            letter-spacing: 6px;
+            color: #b5835a;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .sec-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: #2c241a;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .sec-sub {
+            font-size: 14px;
+            color: #8d6b4a;
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .toc-list li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(181, 131, 90, 0.15);
+            cursor: pointer;
+            transition: background 0.2s ease;
+            font-size: 15px;
+            color: #3d3228;
+        }
+
+        .toc-list li:hover {
+            background: rgba(181, 131, 90, 0.06);
+        }
+
+        .toc-list .k {
+            font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+            font-size: 18px;
+            color: #b5835a;
+            min-width: 28px;
+        }
+
+        .toc-list .n {
+            flex: 1;
+            font-weight: 400;
+        }
+
+        .toc-list .d {
+            font-size: 12px;
+            color: #8d6b4a;
+            font-weight: 300;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .toc-list .d {
+                display: inline;
+            }
+        }
+
+        /* ===== PAGES ===== */
+        .page {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border-bottom: 1px solid rgba(181, 131, 90, 0.1);
+        }
+
+        .page.reverse .page-grid {
+            direction: rtl;
+        }
+
+        .page.reverse .page-grid>* {
+            direction: ltr;
+        }
+
+        .page-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .page-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .page-side {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #8d6b4a;
+            font-weight: 300;
+        }
+
+        .page-tag {
+            border-left: 2px solid #d4a373;
+            padding-left: 14px;
+        }
+
+        .page-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .t-num {
+            font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+            font-size: 42px;
+            color: #d4a373;
+            line-height: 1;
+        }
+
+        .t-name {
+            font-size: 26px;
+            font-weight: 400;
+            color: #2c241a;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        .t-en {
+            font-size: 14px;
+            color: #8d6b4a;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .t-poem {
+            font-size: 16px;
+            line-height: 2;
+            color: #3d3228;
+            font-style: italic;
+            opacity: 0.85;
+            margin: 0.3rem 0;
+        }
+
+        .t-desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #3d3228;
+        }
+
+        .t-foot {
+            font-size: 14px;
+            color: #8d6b4a;
+            font-style: italic;
+            margin-top: 0.3rem;
+            border-top: 1px solid rgba(181, 131, 90, 0.15);
+            padding-top: 0.8rem;
+        }
+
+        .btn-view {
+            background: none;
+            border: 1px solid #d4a373;
+            color: #5c4a3a;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-top: 0.3rem;
+        }
+
+        .btn-view:hover {
+            background: #d4a373;
+            color: #fff;
+        }
+
+        /* ===== POLAROID ===== */
+        .polaroid {
+            background: #fff;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            background: #ede6dc;
+            min-height: 150px;
+            object-fit: cover;
+        }
+
+        .polaroid .caption {
+            text-align: center;
+            font-size: 12px;
+            color: #8d6b4a;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* ===== HERO (520) ===== */
+        .hero {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 300;
+            color: #2c241a;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: #8d6b4a;
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-art {
+            position: relative;
+            margin: 2rem auto;
+            max-width: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ede6dc;
+        }
+
+        .hero-art img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(44, 36, 26, 0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        .bigcount {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            color: #f9f5f0;
+        }
+
+        .bigcount .num {
+            font-size: 5rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
+        }
+
+        .bigcount .unit {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .bigquote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #f9f5f0;
+            margin-top: 0.3rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-desc {
+            max-width: 580px;
+            margin: 0.8rem auto;
+            font-size: 17px;
+            line-height: 1.9;
+            color: #3d3228;
+            font-style: italic;
+        }
+
+        /* ===== NAME RAIN CANVAS ===== */
+        .nameRain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* ===== LETTER ===== */
+        .letter {
+            padding: 4rem 2rem;
+            max-width: 720px;
+            margin: 0 auto;
+            background: #fcfaf7;
+            border-top: 1px solid rgba(181, 131, 90, 0.1);
+        }
+
+        .letter-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: #2c241a;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .letter-body p {
+            font-size: 17px;
+            line-height: 2;
+            color: #3d3228;
+            margin-bottom: 1.2rem;
+        }
+
+        .letter-sign {
+            margin-top: 2.5rem;
+            text-align: right;
+        }
+
+        .sign-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #b5835a;
+            display: block;
+        }
+
+        .sign-date {
+            font-size: 14px;
+            color: #8d6b4a;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: #2c241a;
+            color: #b8a697;
+        }
+
+        .footer-rule {
+            width: 60px;
+            height: 1px;
+            background: #5c4a3a;
+            margin: 0 auto 1.2rem;
+        }
+
+        .footer-stamp {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: #d4a373;
+            letter-spacing: 4px;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            line-height: 1.9;
+            letter-spacing: 1px;
+            font-weight: 300;
+            max-width: 400px;
+            margin: 0 auto 1.2rem;
+        }
+
+        .footer-end {
+            font-size: 13px;
+            letter-spacing: 6px;
+            color: #b5835a;
+            font-weight: 300;
+        }
+
+        .footer-secret {
+            font-size: 12px;
+            color: #5c4a3a;
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .footer-secret:hover {
+            color: #d4a373;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(26, 21, 16, 0.92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 2rem;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 75vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            object-fit: contain;
+        }
+
+        .lightbox-cap {
+            color: #ede6dc;
+            font-size: 16px;
+            margin-top: 1.2rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: none;
+            border: none;
+            color: #ede6dc;
+            font-size: 42px;
+            cursor: pointer;
+            font-weight: 300;
+            transition: transform 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        /* ===== EASTER EGG ===== */
+        .easter {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(26, 21, 16, 0.88);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            padding: 2rem;
+        }
+
+        .easter.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .easter-inner {
+            text-align: center;
+            max-width: 480px;
+            background: #f9f5f0;
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.5s ease;
+        }
+
+        .easter.show .easter-inner {
+            transform: scale(1);
+        }
+
+        .easter-emoji {
+            font-size: 72px;
+            margin-bottom: 0.5rem;
+        }
+
+        .easter-text {
+            font-size: 28px;
+            font-family: 'Dancing Script', cursive;
+            color: #2c241a;
+        }
+
+        .easter-sub {
+            font-size: 15px;
+            color: #8d6b4a;
+            margin: 0.5rem 0 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .easter-close {
+            background: #d4a373;
+            border: none;
+            color: #fff;
+            padding: 8px 28px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+            transition: background 0.2s ease;
+        }
+
+        .easter-close:hover {
+            background: #b5835a;
+        }
+
+        /* ===== MUSIC TOGGLE ===== */
+        .music-toggle {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 5000;
+            background: #2c241a;
+            color: #ede6dc;
+            border: 1px solid #5c4a3a;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .music-toggle:hover {
+            background: #3d3228;
+            transform: scale(1.05);
+        }
+
+        .music-toggle svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .music-toggle .music-slash {
+            display: none;
+        }
+
+        .music-toggle.muted .music-note {
+            display: none;
+        }
+
+        .music-toggle.muted .music-slash {
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .opening-letter-inner {
+                padding: 2rem 1.5rem;
+            }
+
+            .box {
+                width: 200px;
+                height: 160px;
+            }
+
+            .box-lid {
+                top: -50px;
+                height: 50px;
+            }
+
+            .bigcount .num {
+                font-size: 3.2rem;
+            }
+
+            .bigquote {
+                font-size: 1.6rem;
+            }
+
+            .t-num {
+                font-size: 30px;
+            }
+
+            .t-name {
+                font-size: 20px;
+            }
+
+            .polaroid {
+                padding: 6px 6px 20px 6px;
+            }
+
+            .polaroid img {
+                min-height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== GRAIN ===== -->
+    <div class="paper-grain" aria-hidden="true"></div>
+    <div class="progress" aria-hidden="true"><span class="bar" id="bar"></span></div>
+
+    <!-- ===== MUSIC TOGGLE ===== -->
+    <button class="music-toggle muted" id="musicToggle" aria-label="Toggle background music">
+        <svg class="music-note" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M9 18.5a3 3 0 1 1-2-2.83V6.2a1 1 0 0 1 .76-.97l9-2.25A1 1 0 0 1 18 3.95v10.72a3 3 0 1 1-2-2.83V8.1l-7 1.75v8.65z" />
+        </svg>
+        <svg class="music-slash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+                d="M9 18.5a3 3 0 1 1-2-2.83V6.2a1 1 0 0 1 .76-.97l9-2.25A1 1 0 0 1 18 3.95v10.72a3 3 0 1 1-2-2.83V8.1l-7 1.75v8.65z" />
+            <line x1="3" y1="3" x2="21" y2="21" />
+        </svg>
+    </button>
+
+    <!-- ===== OPENING ===== -->
+    <section class="opening" id="opening">
+        <div class="opening-bg" aria-hidden="true"></div>
+        <div class="opening-stage">
+            <div class="box" id="box">
+                <div class="box-lid" id="boxLid">
+                    <div class="box-face">
+                        <div class="box-pattern">
+                            <div class="pup"></div>
+                            <div class="pup"></div>
+                            <div class="pup"></div>
+                        </div>
+                        <div class="box-brand">LUCKY PUPPY</div>
+                        <div class="box-tag">- from Morocco with love -</div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="box-side box-side-front">
+                        <div class="box-front-art">
+                            <span class="bear">🐾</span>
+                            <span class="box-front-text">— DELIVERED —</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-paper"></div>
+            </div>
+            <div class="open-hint" id="openHint">
+                <span>Tap to Open</span>
+                <div class="open-line"></div>
+                <span class="open-from">Turkey ➜ Morocco</span>
+            </div>
+        </div>
+
+        <div class="opening-letter" id="openingLetter">
+            <div class="opening-letter-inner">
+                <div class="letter-corner letter-corner-tl"></div>
+                <div class="letter-corner letter-corner-tr"></div>
+                <div class="letter-corner letter-corner-bl"></div>
+                <div class="letter-corner letter-corner-br"></div>
+                <p class="opening-to">To. Saad:</p>
+                <p class="opening-body">
+                    I hope you love these little gifts of mine. ♥<br>
+                    Each one carries a piece of my heart —<br>
+                    the pink hair, the songs, the stories, the wishes.<br>
+                    From Morocco to Turkey, with all my love.
+                </p>
+                <p class="opening-sign">With all my love, Selen</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COVER ===== -->
+    <header class="cover" id="cover">
+        <div class="cover-frame"></div>
+        <div class="cover-inner">
+            <div class="cover-date">Summer · 2026</div>
+            <div class="cover-from">Turkey ➜ Morocco · Miles Apart, Close at Heart</div>
+            <h1 class="cover-title">
+                <span class="t-line">Dear Selen</span>
+            </h1>
+            <div class="cover-underline"></div>
+            <p class="cover-sub">A love letter sent from Morocco</p>
+            <p class="cover-quote">
+                From miles away, you sent me all your thoughts —<br>
+                tucked gently inside a little blue box.<br>
+                Your pink hair, your songs, your quiet village dreams,<br>
+                the 520 times you wrote my name.<br>
+                Now, word by word, heartbeat by heartbeat,<br>
+                I send my whole heart back to you.
+            </p>
+            <div class="cover-meta">
+                <span>Saad</span>
+                <span class="dot">·</span>
+                <span>Morocco</span>
+                <span class="dot">·</span>
+                <span>August 2026</span>
+            </div>
+            <div class="scroll-hint">
+                <span>Scroll to start our story</span>
+                <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
+                    <path d="M7 1V20M7 20L1 14M7 20L13 14" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== TOC ===== -->
+    <section class="toc">
+        <div class="toc-inner">
+            <div class="sec-num">— CONTENTS —</div>
+            <h2 class="sec-title">A Box of Memories</h2>
+            <p class="sec-sub">Nine gifts · 520 times your name · A handmade letter</p>
+            <ol class="toc-list">
+                <li data-go="p1"><span class="k">壹</span><span class="n">A Letter of Love</span><span class="d">Written
+                        with pure warmth</span></li>
+                <li data-go="p2"><span class="k">贰</span><span class="n">The Golden Seal</span><span class="d">An
+                        elegant royal envelope</span></li>
+                <li data-go="p4"><span class="k">肆</span><span class="n">The Quirky Guardian</span><span class="d">A
+                        little plush doll with a warm heart</span></li>
+                <li data-go="p9"><span class="k">玖</span><span class="n">520 Times Over</span><span class="d">Writing
+                        'Selen' 520 times</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ===== PAGES ===== -->
+
+    <!-- 壹 · Letter -->
+    <article class="page" id="p1">
+        <div class="page-side">
+            <div class="page-tag">No.01 · A Letter of Love</div>
+        </div>
+        <div class="page-grid">
+            <div class="page-text">
+                <div class="t-num">壹</div>
+                <h3 class="t-name">A Letter of Love</h3>
+                <div class="t-en">A letter, sent across the digital sea</div>
+                <p class="t-poem">
+                    Before I even opened the box,<br>
+                    I remembered your first Slowly letter.<br>
+                    Your words arrived like a soft knock on my screen,<br>
+                    delicate, warm, and full of curiosity.
+                </p>
+                <p class="t-desc">
+                    You wrote with honesty and humor,<br>
+                    never hiding the messy, beautiful parts of yourself.<br>
+                    How could I not fall for that?<br>
+                    Every sentence was folded with care,<br>
+                    not in paper, but in the space between heartbeats,<br>
+                    carrying your wish for me to truly see you.<br><br>
+                    It's a memory I will treasure forever<br>
+                    not because it was written any differently,<br>
+                    but because it was written for me.<br><br>
+
+                    <em>You said you felt like a "part-time clown"<br>
+                        but you are the one who brought color into my life.</em>
+                </p>
+                <p class="t-foot">—— Sent from you with all your love</p>
+                <button class="btn-view" data-img="./images/letter.png" data-caption="Selen's Letter ">Zoom In
+                    ↗</button>
+            </div>
+            <div class="page-img">
+                <div class="polaroid" data-tilt="2">
+                    <img src="./images/letter.png" alt="Selen's letter" style="background:#ede6dc;min-height:200px;">
+                    <div class="caption">The first letter from you</div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- 贰 · Golden Seal -->
+    <article class="page reverse" id="p2">
+        <div class="page-side">
+            <div class="page-tag">No.02 · The Golden Seal</div>
+        </div>
+        <div class="page-grid">
+            <div class="page-img">
+                <div class="polaroid" data-tilt="-3">
+                    <img src="./images/edict-wrap.png" alt="Golden envelope"
+                        style="background:#ede6dc;min-height:200px;">
+                    <div class="caption">A beautiful golden seal wrapper</div>
+                </div>
+            </div>
+            <div class="page-text">
+                <div class="t-num">贰</div>
+                <h3 class="t-name">The Golden Seal</h3>
+                <div class="t-en">A playful proclamation, sent through pixels</div>
+                <p class="t-poem">
+                    Before the box arrived, you sent a message —<br>
+                    playful, mysterious, full of anticipation.<br>
+                    "I'm going to tell you some crazy stuff," you said,<br>
+                    and I waited like a child before a treasure chest.
+                </p>
+                <p class="t-desc">
+                    Then you sent a link. A tiny website you built.<br>
+                    A digital package — addressed to me, from you.<br>
+                    You could have just typed words,<br>
+                    but you created an experience: a parcel, a seal,<br>
+                    a letter, a tune, a stitch, a piece of your heart.<br>
+                    You folded your feelings into code,<br>
+                    wrapped them in nostalgia,<br>
+                    and sent them across the miles.<br><br>
+                    Your hands didn't fold paper —<br>
+                    they crafted a world for me to open.<br>
+                    And in that world, you wrote:<br>
+                    <em>"You're a great friend!"</em><br>
+                    But your heart said more.<br><br>
+                    <em>Just like that golden seal, your heart shines<br>
+                        even when you try to hide it behind jokes.</em>
+                </p>
+                <p class="t-foot">—— Opening it felt like unwrapping a piece of your heart.</p>
+            </div>
+        </div>
+    </article>
+
+
+
+    <!-- 肆 · Quirky Guardian -->
+    <article class="page reverse" id="p4">
+        <div class="page-side">
+            <div class="page-tag">No.04 · Quirky Guardian</div>
+        </div>
+        <div class="page-grid">
+            <div class="page-img">
+                <div class="polaroid" data-tilt="-2">
+                    <img src="./images/ugly-doll.png" alt="Quirky doll" style="background:#ede6dc;min-height:200px;">
+                    <div class="caption">Silly and extremely cute</div>
+                </div>
+            </div>
+            <div class="page-text">
+                <div class="t-num">肆</div>
+                <h3 class="t-name">The Quirky Guardian</h3>
+                <div class="t-en">A guardian of good luck</div>
+                <p class="t-poem">
+                    A little red cap, messy hair, a silly toothy smile,<br>
+                    wearing tiny blue overalls that say 'Good Luck'.
+                </p>
+                <p class="t-desc">
+                    It's so silly yet so dedicated,<br>
+                    reminding me every day—<br>
+                    'You deserve to be happy.'<br>
+
+                    <br>
+                    <em>Like your pink hair, it doesn't need to be perfect<br>
+                        to be a perfect guardian of joy.</em>
+                </p>
+                <p class="t-foot">—— A little guardian of joy, carrying your smile.</p>
+            </div>
+        </div>
+    </article>
+
+
+
+
+
+    <!-- ===== 520 · HERO ===== -->
+    <section class="hero" id="p9">
+        <div class="hero-inner">
+            <div class="sec-num">— 玖 —</div>
+            <h2 class="hero-title">520 Times Over</h2>
+            <p class="hero-sub">
+                You wrote "Saad" 520 times.<br>
+                The most beautiful confession I could ever receive.<br>
+                <em>Like the "Hoodie" song you played on repeat —<br>
+                    an ordinary object holding extraordinary meaning.</em>
+            </p>
+
+            <div class="hero-art">
+                <img src="./images/labels.png" alt="520 names label" class="hero-img"
+                    style="background:#ede6dc;min-height:200px;">
+                <div class="hero-overlay">
+                    <div class="bigcount">
+                        <span class="num" data-target="520">0</span>
+                        <span class="unit">times</span>
+                    </div>
+                    <div class="bigquote">「 S e l e n 」</div>
+                </div>
+            </div>
+
+            <p class="hero-desc">
+                Row after row, letter after letter,<br>
+                each one a testament to your endless thoughts.<br>
+                You chose the slowest, most patient way<br>
+                to weave my name into your heart.
+            </p>
+            <p class="hero-desc">
+                This beautiful effort is the most precious<br>
+                gift I have ever received.
+            </p>
+        </div>
+        <canvas class="nameRain" id="nameRain" aria-hidden="true"></canvas>
+    </section>
+
+    <!-- ===== LETTER ===== -->
+    <section class="letter" id="letter">
+        <div class="letter-inner">
+            <div class="sec-num">— AFTERWORD —</div>
+            <h2 class="letter-title">My Letter Back to You</h2>
+            <div class="letter-body">
+                <p>Selen,</p>
+                <p>
+                    I hope this letter finds you well —<br>
+                    with your pink hair still glowing,<br>
+                    your heart still full of songs,<br>
+                    and your quiet village dreams still alive.
+                </p>
+                <p>
+                    Receiving your sweet box was the happiest moment of my summer.<br>
+                    Before looking at the gifts, I looked at your note.<br>
+                    Your handwriting, slightly tilted and delicate,<br>
+                    showed all the effort you put in.
+                </p>
+                <p>
+                    Sending this box of memories all the way from Morocco,<br>
+                    across borders, flights, and miles,<br>
+                    every item was wrapped so carefully,<br>
+                    as if protecting a precious treasure.
+                </p>
+                <p>
+                    From the playful golden scroll to the cute little charms,<br>
+                    I felt every bit of your warmth<br>
+                    My heart is full knowing how much I mean to you.
+                </p>
+                <p>
+                    <em>You told me about your surgery bars, your mother's matching outfits,<br>
+                        your brother's betrayal, and the evil eye superstition.<br>
+                        You told me about Adéla, KiiiKiii, and "Ain't in LA."<br>
+                        You told me about the Morocco trip that almost was —<br>
+                        and the quiet Italian village that still might be.<br>
+                        I remember all of it.</em>
+                </p>
+                <p>
+                    I might not have grand words,<br>
+                    but I made this webpage to unfold your sweet gestures.<br>
+                    The quirky doll sits on my bag,<br>
+                    the bone charm keeps me company,<br>
+                </p>
+
+                <p>
+                    <em>You told me you were born "as wild as a flood."<br>
+                        And I've learned that floods don't destroy —<br>
+                        they reshape, they nourish, they bring life.<br>
+                        You've reshaped my heart in ways I never expected.</em>
+                </p>
+                <p class="letter-sign">
+                    Yours always,<br>
+                    <span class="sign-name">Saad</span><br>
+                    <span class="sign-date">August 2026 · Morocco</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-rule"></div>
+            <div class="footer-stamp">2026</div>
+            <p class="footer-text">
+                Morocco ➜ Turkey <br>
+                Miles Apart<br>
+                But our hearts are always connected,<br>
+                across any distance.
+            </p>
+            <p class="footer-end">— Endless Love —</p>
+            <p class="footer-secret" id="footerSecret">[ There is a little secret hidden here ]</p>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-cap" id="lightboxCap"></div>
+    </div>
+
+    <!-- ===== EASTER EGG ===== -->
+    <div class="easter" id="easter" aria-hidden="true">
+        <div class="easter-inner">
+            <div class="easter-emoji">🐳</div>
+            <div class="easter-text">I love you too, Selen.</div>
+            <div class="easter-sub">— Saad, August 2026 —<br>
+                <span style="font-size:13px;opacity:0.7;display:block;margin-top:4px;">
+                    From Morocco, with all my heart
+                </span>
+            </div>
+            <button class="easter-close" id="easterClose">Close</button>
+        </div>
+    </div>
+
+    <!-- ===== AUDIO ===== -->
+    <audio id="bgm" preload="auto" loop playsinline src="https://music.163.com/song/media/outer/url?id=1299980643.mp3">
+    </audio>
+
+    <script>
+        // ============================================================
+        // SCRIPT
+        // ============================================================
+
+        (function () {
+            'use strict';
+
+            // ---------- SCROLL PROGRESS ----------
+            const bar = document.getElementById('bar');
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                bar.style.width = progress + '%';
+            });
+
+            // ---------- BOX OPEN ----------
+            const box = document.getElementById('box');
+            const boxLid = document.getElementById('boxLid');
+            const openHint = document.getElementById('openHint');
+            const openingLetter = document.getElementById('openingLetter');
+            let boxOpened = false;
+
+            box.addEventListener('click', function () {
+                if (boxOpened) return;
+                boxOpened = true;
+                boxLid.classList.add('open');
+                openHint.classList.add('hidden');
+
+                setTimeout(function () {
+                    openingLetter.classList.add('show');
+                }, 400);
+            });
+
+            openingLetter.addEventListener('click', function (e) {
+                if (e.target === openingLetter || e.target.closest('.opening-letter-inner') === null) {
+                    openingLetter.classList.remove('show');
+                }
+            });
+
+            // ---------- TOC SCROLL ----------
+            document.querySelectorAll('.toc-list li').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    const target = item.getAttribute('data-go');
+                    if (target) {
+                        const el = document.getElementById(target);
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+
+            // ---------- LIGHTBOX ----------
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCap = document.getElementById('lightboxCap');
+            const lightboxClose = document.getElementById('lightboxClose');
+
+            document.querySelectorAll('.btn-view').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const imgSrc = btn.getAttribute('data-img');
+                    const caption = btn.getAttribute('data-caption') || '';
+                    if (imgSrc) {
+                        lightboxImg.src = imgSrc;
+                        lightboxCap.textContent = caption;
+                        lightbox.classList.add('open');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+
+            // ---------- 520 COUNTER ----------
+            const counterEl = document.querySelector('.num');
+            const target = parseInt(counterEl.getAttribute('data-target'), 10);
+            let countRun = false;
+
+            function runCounter() {
+                if (countRun) return;
+                countRun = true;
+                let current = 0;
+                const step = Math.ceil(target / 60);
+                const interval = setInterval(function () {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(interval);
+                    }
+                    counterEl.textContent = current;
+                }, 25);
+            }
+
+            // ---------- NAME RAIN CANVAS ----------
+            const canvas = document.getElementById('nameRain');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            const words = ['Selen', '♡', 'pink hair', 'Morocco', 'Turkey', 'Adéla', 'KiiiKiii', '520', 'Saad', '🐳', 'Bonjour',
+                'Aşk', '♥'
+            ];
+            let particles = [];
+            let rainActive = false;
+
+            function resizeCanvas() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            function initRain() {
+                particles = [];
+                const count = Math.min(60, Math.floor((w * h) / 15000));
+                for (let i = 0; i < count; i++) {
+                    const word = words[Math.floor(Math.random() * words.length)];
+                    particles.push({
+                        text: word,
+                        x: Math.random() * w,
+                        y: Math.random() * h - h,
+                        speed: 0.3 + Math.random() * 0.5,
+                        size: 11 + Math.random() * 14,
+                        opacity: 0.15 + Math.random() * 0.25,
+                        angle: (Math.random() - 0.5) * 0.4,
+                        drift: (Math.random() - 0.5) * 0.2,
+                    });
+                }
+            }
+
+            function drawRain() {
+                ctx.clearRect(0, 0, w, h);
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                for (const p of particles) {
+                    ctx.fillStyle = 'rgba(44,36,26,' + p.opacity + ')';
+                    ctx.font = p.size + 'px "Dancing Script", cursive';
+                    ctx.fillText(p.text, p.x, p.y);
+                    p.y += p.speed;
+                    p.x += p.drift;
+                    if (p.y > h + 20) {
+                        p.y = -20;
+                        p.x = Math.random() * w;
+                        p.text = words[Math.floor(Math.random() * words.length)];
+                    }
+                }
+                requestAnimationFrame(drawRain);
+            }
+
+            // ---------- INTERSECTION OBSERVER ----------
+            const hero = document.querySelector('.hero');
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        runCounter();
+                        if (!rainActive) {
+                            rainActive = true;
+                            initRain();
+                            drawRain();
+                        }
+                    } else {
+                        // keep running, but don't re-init
+                    }
+                });
+            }, { threshold: 0.2 });
+            if (hero) observer.observe(hero);
+
+            // ---------- EASTER EGG ----------
+            const footerSecret = document.getElementById('footerSecret');
+            const easter = document.getElementById('easter');
+            const easterClose = document.getElementById('easterClose');
+            let easterShown = false;
+
+            footerSecret.addEventListener('click', function () {
+                if (easterShown) return;
+                easterShown = true;
+                easter.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeEaster() {
+                easter.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            easterClose.addEventListener('click', closeEaster);
+            easter.addEventListener('click', function (e) {
+                if (e.target === easter) closeEaster();
+            });
+
+            // ---------- MUSIC TOGGLE ----------
+            const musicToggle = document.getElementById('musicToggle');
+            const bgm = document.getElementById('bgm');
+            let musicPlaying = false;
+
+            musicToggle.addEventListener('click', function () {
+                if (musicPlaying) {
+                    bgm.pause();
+                    musicToggle.classList.add('muted');
+                    musicPlaying = false;
+                } else {
+                    bgm.play().then(function () {
+                        musicToggle.classList.remove('muted');
+                        musicPlaying = true;
+                    }).catch(function () {
+                        // autoplay blocked, try on user gesture
+                    });
+                }
+            });
+
+            // Try to play on first user interaction anywhere
+            document.addEventListener('click', function tryPlay() {
+                if (!musicPlaying) {
+                    bgm.play().then(function () {
+                        musicToggle.classList.remove('muted');
+                        musicPlaying = true;
+                    }).catch(function () { });
+                }
+                document.removeEventListener('click', tryPlay);
+            }, { once: true });
+
+            // ---------- POLAROID TILT (light effect) ----------
+            document.querySelectorAll('.polaroid[data-tilt]').forEach(function (el) {
+                const tilt = parseFloat(el.getAttribute('data-tilt')) || 0;
+                el.style.transform = 'rotate(' + tilt + 'deg)';
+            });
+
+            console.log('For Selen, with love from Saad. ♥');
+        })();
+    </script>
+
+</body>
+
+</html>

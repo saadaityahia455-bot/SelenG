@@ -1,0 +1,63 @@
+MIT License
+
+Copyright (c) 2026 韩天宇 (Han Tianyu)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 第三方资源许可
+
+本项目使用了以下第三方资源,均在各自协议允许范围内使用:
+
+### 字体
+- **Ma Shan Zheng** — [SIL Open Font License 1.1](https://scripts.sil.org/OFL) (Google Fonts)
+- **Long Cang** — [SIL Open Font License 1.1](https://scripts.sil.org/OFL) (Google Fonts)
+- **Cormorant Garamond** — [SIL Open Font License 1.1](https://scripts.sil.org/OFL) (Google Fonts)
+- **Noto Serif SC** — [SIL Open Font License 1.1](https://scripts.sil.org/OFL) (Google Fonts)
+
+### 音乐
+- **Kiss the Rain** by Yiruma —— 通过网易云音乐外链播放
+- 网易云音乐外链遵循该平台的版权声明
+- 替换音乐时请确保你拥有新音乐的使用权
+
+### 图片
+- 项目内置的 `images/` 文件夹为空,需要使用者自行提供
+- 请勿在 PR 中提交真实的礼物照片或手写信扫描件
+
+---
+
+## 关于"我的爱"开源
+
+这个项目采用 MIT 协议开源,**你可以**:
+- ✅ 自由使用、修改、商用
+- ✅ 用它做成任何你想做的东西
+- ✅ 写自己的情书、做商业的卡片设计、做纪念日网页
+- ✅ 在你 fork 的版本里写任何你想写的话
+
+**但请注意**:
+- ⚠️ 这是作者写给真实的人的私人情感的代码化呈现
+- ⚠️ 如果你 fork 后想分享,**请替换掉所有私人信息**(姓名、地址、照片、信件内容)
+- ⚠️ 项目中的文案("贝贝"、"山东 ➜ 深圳"、回信内容)是作者的真实经历,请勿直接复用
+- ⚠️ 我们鼓励你**写自己的话**,而不是抄我们的话 —— 那才是真正的"代码情书"
+
+---
+
+> "代码是冷的,但写代码的人,可以很暖。"
+> —— 韩天宇,2026 年 8 月
